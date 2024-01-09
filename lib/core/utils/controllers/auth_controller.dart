@@ -20,7 +20,7 @@ class AuthController extends GetxController {
       Get.offAllNamed(AppRoutes.homePage);
       // return credential;
     } on FirebaseAuthException catch (e) {
-      Get.defaultDialog(title: "asd", middleText: "");
+      Get.defaultDialog(title: "Auth Error", middleText: "${e.message}");
     }
   }
 
@@ -40,15 +40,28 @@ class AuthController extends GetxController {
 
         // return credential;
       } on FirebaseAuthException catch (e) {
-        throw Exception(e.code);
+        Get.defaultDialog(title: "Auth Error", middleText: "${e.message}");
       }
     } else {
-      Get.snackbar("Auth Error", "Konfirmasi Password salah!");
+      Get.defaultDialog(
+          title: "Auth Error", middleText: "Konfirmasi Password salah!");
     }
   }
 
   void signOut() async {
     await _fAuth.signOut();
     Get.offAllNamed(AppRoutes.loginScreen);
+  }
+
+  void resetPassword(String email) async {
+    try {
+      await _fAuth.sendPasswordResetEmail(email: email);
+      Get.defaultDialog(
+          title: "Auth Error",
+          middleText:
+              "${"Berhasil mengirim reset password ke email: ${email}"}");
+    } on FirebaseAuthException catch (e) {
+      Get.defaultDialog(title: "Auth Error", middleText: "${e.message}");
+    }
   }
 }
