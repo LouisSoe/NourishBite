@@ -1,7 +1,6 @@
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
-
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
 import 'package:NourishBite/widgets/custom_outlined_button.dart';
 import 'package:NourishBite/widgets/custom_text_form_field.dart';

@@ -9,6 +9,7 @@ class AppDecoration {
 
   // Outline decorations
   static BoxDecoration get outlineBlack => BoxDecoration();
+
   static BoxDecoration get outlineprimary => BoxDecoration(
         color: const Color.fromARGB(255, 102, 152, 109),
         boxShadow: [
@@ -59,8 +60,8 @@ class AppDecoration {
           begin: Alignment(0.5, 1),
           end: Alignment(0.5, 0),
           colors: [
-            appTheme.black900.withOpacity(0.6),
-            appTheme.black900.withOpacity(0.6),
+            appTheme.black900.withOpacity(0.1),
+            appTheme.black900.withOpacity(0.1),
           ],
         ),
       );

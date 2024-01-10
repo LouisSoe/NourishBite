@@ -17,6 +17,7 @@ class ImageConstant {
   static String imgMaterialSymbolsShare =
       '$imagePath/img_material_symbols_share.svg';
   static String imgEllipse28 = '$imagePath/img_ellipse_28.png';
+  static String imgRectangle36 = '$imagePath/img_rectangle_36.png';
   static String imgEllipse29 = '$imagePath/img_ellipse_29.png';
   static String imgEllipse30 = '$imagePath/img_ellipse_30.png';
   static String imgEllipse31 = '$imagePath/img_ellipse_31.png';
@@ -26,4 +27,8 @@ class ImageConstant {
   static String imgBxsDonateHeart = '$imagePath/img_bxs_donate_heart.svg';
   static String imgMapMarkedAlt = '$imagePath/img_map_marked_alt.svg';
   static String imgNavProfile = '$imagePath/img_nav_profile.svg';
+  static String imgRectangle93 = '$imagePath/img_rectangle_93.png';
+  static String imgRectangle30 = '$imagePath/Rectangle_30.png';
+  static String imgVector = '$imagePath/img_vector.svg';
+  static String imgVectorGray60002 = '$imagePath/img_vector_gray_600_02.svg';
 }
