@@ -29,8 +29,19 @@ class HomePage extends StatelessWidget {
                 GButton(icon: Icons.map_rounded, text: "Distribution"),
                 GButton(icon: Icons.account_circle, text: "Profile"),
               ],
+              selectedIndex: 0,
               onTabChange: (index) {
-                print(index);
+                switch (index) {
+                  case 0:
+                    // Navigate to Home route
+                    Navigator.pushNamed(context, AppRoutes.homePage);
+                    break;
+                  case 1:
+                    // Navigate to Donate route
+                    Navigator.pushNamed(context, AppRoutes.donation);
+                    break;
+                  // ... and so on for other tabs
+                }
               }),
           body: Container(
             width: double.maxFinite,
