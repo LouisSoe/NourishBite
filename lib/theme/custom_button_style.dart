@@ -9,4 +9,16 @@ class CustomButtonStyles {
         backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
         elevation: MaterialStateProperty.all<double>(0),
       );
+  static ButtonStyle get fillGreenA => ElevatedButton.styleFrom(
+        backgroundColor: appTheme.greenA70001,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.h),
+        ),
+      );
+  static ButtonStyle get fillOnError => ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.onError,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.h),
+        ),
+      );
 }

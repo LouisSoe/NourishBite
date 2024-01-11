@@ -204,6 +204,8 @@ class EmergencylistItemWidget extends StatelessWidget {
                   height: 25,
                   child: CustomElevatedButton(
                     text: "Donate Now",
+                    onPressed: () =>
+                        Navigator.pushNamed(context, AppRoutes.pilihdonasi),
                     buttonStyle: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           const Color.fromARGB(255, 45, 100, 66)),
