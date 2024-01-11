@@ -31,4 +31,7 @@ class ImageConstant {
   static String imgRectangle30 = '$imagePath/Rectangle_30.png';
   static String imgVector = '$imagePath/img_vector.svg';
   static String imgVectorGray60002 = '$imagePath/img_vector_gray_600_02.svg';
+  static String imgEllipse2851x51 = '$imagePath/img_ellipse_28_51x51.png';
+  static String imgEllipse2951x51 = '$imagePath/img_ellipse_29_51x51.png';
+  static String paypallogo = '$imagePath/paypallogo.png';
 }

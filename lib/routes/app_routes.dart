@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:NourishBite/core/pages/login.dart';
 import 'package:NourishBite/core/pages/register.dart';
 import 'package:NourishBite/core/pages/donation.dart';
+import 'package:NourishBite/core/pages/pilih_donasi.dart';
+import 'package:NourishBite/core/pages/donationmoney.dart';
 
 class AppRoutes {
   static const String loginScreen = '/login_screen';
@@ -11,6 +13,8 @@ class AppRoutes {
   static const String registerScreen = '/register';
   static const String homePage = '/home';
   static const String donation = '/donation';
+  static const String pilihdonasi = '/pilih_donasi';
+  static const String donationmoney = '/donasi_money';
 
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
@@ -18,5 +22,7 @@ class AppRoutes {
     homePage: (context) => HomePage(),
     mapsScreen: (context) => Maps(),
     donation: (context) => DonateScreen(),
+    pilihdonasi: (context) => DontationStageScreen(),
+    donationmoney: (context) => DontationMoneyScreen(),
   };
 }

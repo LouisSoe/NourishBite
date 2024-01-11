@@ -24,6 +24,12 @@ class AppDecoration {
           ),
         ],
       );
+  static BoxDecoration get outlinePrimaryContainer => BoxDecoration(
+        border: Border.all(
+          color: theme.colorScheme.primaryContainer,
+          width: 1.h,
+        ),
+      );
   // Fill decorations
   static BoxDecoration get fillBlueGray => BoxDecoration(
         color: appTheme.blueGray800,
