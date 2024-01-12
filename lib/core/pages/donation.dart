@@ -321,7 +321,6 @@ class DonateScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     Map<String, dynamic> data = snapshot.data!.docs[index]
                         .data() as Map<String, dynamic>;
-                    print(data);
                     return EmergencylistItemWidget(data["judul"], data["cover_gambar"], data["type"]);
                   },
                 );
