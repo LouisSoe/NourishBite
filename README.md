@@ -23,10 +23,9 @@ Our Charity Mobile App links Donors to opportunities for Giving donations and br
 
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+- Dontaion
+- Distribution
+- Login Register
 
 
 ## Screenshots
