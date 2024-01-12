@@ -5,7 +5,12 @@ import 'package:NourishBite/core/app_export.dart';
 // ignore: must_be_immutable
 class DonationcomponentlistItemWidget extends StatelessWidget {
   final String judul;
-  const DonationcomponentlistItemWidget(this.judul, {Key? key})
+  final String status;
+  final String image_cover;
+  final List<dynamic> type;
+  const DonationcomponentlistItemWidget(
+      this.judul, this.status, this.image_cover, this.type,
+      {Key? key})
       : super(
           key: key,
         );
@@ -27,8 +32,9 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
               alignment: Alignment.topLeft,
               children: [
                 CustomImageView(
-                  imagePath: ImageConstant.imgRectangle88,
-                  height: 160.v,
+                  fit: BoxFit.cover,
+                  imagePath: image_cover,
+                  height: 170.v,
                   width: 142.h,
                   radius: BorderRadius.horizontal(
                     left: Radius.circular(5.h),
@@ -47,7 +53,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                       borderRadius: BorderRadiusStyle.customBorderTL51,
                     ),
                     child: Text(
-                      "Donate Now",
+                      status,
                       style: TextStyle(
                         color: appTheme.whiteA70002,
                         fontSize: 10.fSize,
@@ -102,7 +108,11 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                   runSpacing: 3.v,
                   spacing: 3.h,
                   children: List<Widget>.generate(
-                      2, (index) => Emergencychip1ItemWidget("emergency")),
+                    type.length,
+                    (index) => Emergencychip1ItemWidget(
+                      type[index],
+                    ),
+                  ),
                 ),
                 SizedBox(height: 8.v),
                 Row(

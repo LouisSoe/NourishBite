@@ -6,7 +6,10 @@ import 'package:NourishBite/widgets/custom_elevated_button.dart';
 // ignore: must_be_immutable
 class EmergencylistItemWidget extends StatelessWidget {
   final String judul;
-  const EmergencylistItemWidget(this.judul, {Key? key})
+  final String image_cover;
+  final List<dynamic> type;
+  const EmergencylistItemWidget(this.judul, this.image_cover, this.type,
+      {Key? key})
       : super(
           key: key,
         );
@@ -50,8 +53,8 @@ class EmergencylistItemWidget extends StatelessWidget {
                   height: 175,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
-                      image: AssetImage(ImageConstant
-                          .imgRectangle30), // Replace with your image path
+                      image: NetworkImage(
+                          image_cover), // Replace with your image path
                       fit: BoxFit.fill,
                     ),
                     shape: RoundedRectangleBorder(
@@ -90,7 +93,7 @@ class EmergencylistItemWidget extends StatelessWidget {
                 child: SizedBox(
                   width: 230,
                   child: Text(
-                    'Give life-saving aid in  Africa',
+                    judul,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,

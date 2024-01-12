@@ -1,21 +1,27 @@
+import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
+import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
 import 'package:NourishBite/widgets/donationcomponentlist_item_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:NourishBite/core/app_export.dart';
 
 // ignore_for_file: must_be_immutable
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key})
+  HomePage({Key? key})
       : super(
           key: key,
         );
-
+  final authC = Get.find<AuthController>();
+  final donationC = Get.find<DonationController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: Scaffold(
+          backgroundColor: Colors.white,
           bottomNavigationBar: GNav(
               gap: 2,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
@@ -57,18 +63,33 @@ class HomePage extends StatelessWidget {
                   children: [
                     _buildSettingsRow(context),
                     SizedBox(height: 26.v),
-                    Padding(
-                      padding: EdgeInsets.only(left: 2.h),
-                      child: Text(
-                        "Hello Jacklin",
-                        style: TextStyle(
-                          color: appTheme.black900,
-                          fontSize: 24.fSize,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
+                    FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                        future: authC.getUserProfile(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
+                          if (snapshot.hasData) {
+                            Map<String, dynamic> data = snapshot.data!.data()!;
+                            return Padding(
+                              padding: EdgeInsets.only(left: 2.h),
+                              child: Text(
+                                "Hello ${data["username"]}",
+                                style: TextStyle(
+                                  color: appTheme.black900,
+                                  fontSize: 24.fSize,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Padding(
+                                padding: EdgeInsets.only(left: 2.h),
+                                child: Text("tidak ada user"));
+                          }
+                        }),
                     SizedBox(height: 5.v),
                     Padding(
                       padding: EdgeInsets.only(left: 2.h),
@@ -124,13 +145,15 @@ class HomePage extends StatelessWidget {
               top: 13.v,
               bottom: 2.v,
             ),
-            child: Text(
-              "Achivement",
-              style: TextStyle(
-                color: appTheme.black900,
-                fontSize: 15.fSize,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
+            child: GestureDetector(
+              child: Text(
+                "Achivement",
+                style: TextStyle(
+                  color: appTheme.black900,
+                  fontSize: 15.fSize,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -262,28 +285,41 @@ class HomePage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildDonationComponentList(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 2.h, bottom: 100.h),
-      child: ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return SizedBox(
-            height: 17.v,
+    return StreamBuilder<QuerySnapshot<Object?>>(
+      stream: donationC.getDonation(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          return Padding(
+            padding: EdgeInsets.only(right: 2.h, bottom: 20.h),
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              separatorBuilder: (
+                context,
+                index,
+              ) {
+                return SizedBox(
+                  height: 17.v,
+                );
+              },
+              itemCount: snapshot.data!.size,
+              itemBuilder: (
+                context,
+                index,
+              ) {
+                Map<String, dynamic> data =
+                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                //parameter judul sisanya tambahin sendiri itu cuman contoh
+                return DonationcomponentlistItemWidget(data["judul"],
+                    data["status"], data["cover_gambar"], data["type"]);
+              },
+            ),
           );
-        },
-        itemCount: 2,
-        itemBuilder: (
-          context,
-          index,
-        ) {
-          //parameter judul sisanya tambahin sendiri itu cuman contoh
-          return DonationcomponentlistItemWidget("test");
-        },
-      ),
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

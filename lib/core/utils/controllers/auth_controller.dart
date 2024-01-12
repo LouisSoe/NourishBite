@@ -23,7 +23,7 @@ class AuthController extends GetxController {
     }
   }
 
-  signUp(String username, String email, String tgl_lahir, String password,
+  void signUp(String username, String email, String tgl_lahir, String password,
       String confirmPass) async {
     if (password == confirmPass) {
       try {
@@ -63,4 +63,17 @@ class AuthController extends GetxController {
       Get.defaultDialog(title: "Auth Error", middleText: "${e.message}");
     }
   }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async {
+    String uid = _fAuth.currentUser!.uid;
+    return _fStore.collection("users").doc(uid).get();
+  }
+
+  // Stream<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async* {
+  //   try {
+  //     yield* _fStore.collection("users").doc(uid).snapshots();
+  //   } on FirebaseAuthException catch (e) {
+  //     Get.defaultDialog(title: "Auth Error", middleText: "${e.message}");
+  //   }
+  // }
 }
