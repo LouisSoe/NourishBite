@@ -1,7 +1,10 @@
+import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
 import 'package:NourishBite/widgets/emergencylist_item_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/custom_text_form_field.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:NourishBite/widgets/donationcomponentlist_item_widget.dart';
 
@@ -13,7 +16,7 @@ class DonateScreen extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
+  final donationC = Get.find<DonationController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,11 +41,11 @@ class DonateScreen extends StatelessWidget {
                 switch (index) {
                   case 0:
                     // Navigate to Home route
-                    Navigator.pushNamed(context, AppRoutes.homePage);
+                    Get.toNamed(AppRoutes.homePage);
                     break;
                   case 1:
                     // Navigate to Donate route
-                    Navigator.pushNamed(context, AppRoutes.donation);
+                    Get.toNamed(AppRoutes.donation);
                     break;
                 }
               }),
@@ -203,74 +206,90 @@ class DonateScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildChooseWhereToStack(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: SizedBox(
-        height: 150.v,
-        width: 348.h,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            CustomImageView(
-              imagePath: ImageConstant.imgRectangle36,
+    return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      future: donationC.getEmergency(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+        if (snapshot.data!.docs.isNotEmpty) {
+          Map<String, dynamic> data = snapshot.data!.docs[0].data();
+          return Align(
+            alignment: Alignment.center,
+            child: SizedBox(
               height: 150.v,
               width: 348.h,
-              radius: BorderRadius.circular(
-                5.h,
-              ),
-              alignment: Alignment.center,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 348.h,
-                decoration: AppDecoration.gradientBlackToBlack.copyWith(
-                  borderRadius: BorderRadiusStyle.roundedBorder5,
-                ),
-                child: Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 88.h,
-                      padding: EdgeInsets.all(0),
-                      decoration: AppDecoration.fillRed.copyWith(
-                        borderRadius: BorderRadiusStyle.customBorderTL5,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CustomImageView(
+                    fit: BoxFit.cover,
+                    imagePath: data["cover_gambar"],
+                    height: 150.v,
+                    width: 348.h,
+                    radius: BorderRadius.circular(
+                      5.h,
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 348.h,
+                      decoration: AppDecoration.gradientBlackToBlack.copyWith(
+                        borderRadius: BorderRadiusStyle.roundedBorder5,
                       ),
-                      child: Text(
-                        "Emergency",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15.fSize,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                        ),
+                      child: Column(
+                        // mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 88.h,
+                            padding: EdgeInsets.all(0),
+                            decoration: AppDecoration.fillRed.copyWith(
+                              borderRadius: BorderRadiusStyle.customBorderTL5,
+                            ),
+                            child: Text(
+                              "Emergency",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.fSize,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 42.v),
+                          Container(
+                            width: 247.h,
+                            margin: EdgeInsets.only(left: 11.h),
+                            child: Text(
+                              data["judul"],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.fSize,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 11.v),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 42.v),
-                    Container(
-                      width: 247.h,
-                      margin: EdgeInsets.only(left: 11.h),
-                      child: Text(
-                        "Give emergency aid in Ukraine",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 23.fSize,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 11.v),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
+          );
+        } else {
+          return Center(
+            child: Container(),
+          );
+        }
+      },
     );
   }
 
@@ -281,20 +300,36 @@ class DonateScreen extends StatelessWidget {
       child: Container(
         child: SizedBox(
           height: 350.h,
-          child: ListView.separated(
-            padding: EdgeInsets.only(left: 23.h),
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (
-              context,
-              index,
-            ) {
-              return SizedBox(
-                width: 15.h,
-              );
-            },
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return EmergencylistItemWidget("test");
+          child: StreamBuilder<QuerySnapshot<Object?>>(
+            stream: donationC.getLongTermDonation(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                return ListView.separated(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 23.h,
+                  ),
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (
+                    context,
+                    index,
+                  ) {
+                    return SizedBox(
+                      width: 15.h,
+                    );
+                  },
+                  itemCount: snapshot.data!.size,
+                  itemBuilder: (context, index) {
+                    Map<String, dynamic> data = snapshot.data!.docs[index]
+                        .data() as Map<String, dynamic>;
+                    return EmergencylistItemWidget(
+                        data["judul"], data["cover_gambar"], data["type"]);
+                  },
+                );
+              } else {
+                return Center(
+                  child: Text(""),
+                );
+              }
             },
           ),
         ),
@@ -304,28 +339,41 @@ class DonateScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildDonationComponentList(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 20.h, left: 20.h, bottom: 100.h),
-      child: ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return SizedBox(
-            height: 17.v,
+    return StreamBuilder<QuerySnapshot<Object?>>(
+      stream: donationC.getDonation(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          return Padding(
+            padding: EdgeInsets.only(right: 20.h, left: 20.h, bottom: 20.h),
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              separatorBuilder: (
+                context,
+                index,
+              ) {
+                return SizedBox(
+                  height: 17.v,
+                );
+              },
+              itemCount: snapshot.data!.size,
+              itemBuilder: (
+                context,
+                index,
+              ) {
+                Map<String, dynamic> data =
+                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                //parameter judul sisanya tambahin sendiri itu cuman contoh
+                return DonationcomponentlistItemWidget(data["judul"],
+                    data["status"], data["cover_gambar"], data["type"]);
+              },
+            ),
           );
-        },
-        itemCount: 2,
-        itemBuilder: (
-          context,
-          index,
-        ) {
-          //parameter judul sisanya tambahin sendiri itu cuman contoh
-          return DonationcomponentlistItemWidget("test");
-        },
-      ),
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

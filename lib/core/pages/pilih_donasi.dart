@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
 
 class DontationStageScreen extends StatelessWidget {
   const DontationStageScreen({Key? key})
@@ -58,6 +59,8 @@ class DontationStageScreen extends StatelessWidget {
           ),
           SizedBox(height: 111.v),
           CustomElevatedButton(
+            height: 50,
+            onPressed: () => Get.toNamed(AppRoutes.donationfood),
             buttonTextStyle: TextStyle(color: Colors.white, fontSize: 22),
             text: "Food",
             leftIcon: Container(
@@ -112,6 +115,7 @@ class DontationStageScreen extends StatelessWidget {
           ),
           SizedBox(height: 18.v),
           CustomElevatedButton(
+            height: 50,
             onPressed: () =>
                 Navigator.pushNamed(context, AppRoutes.donationmoney),
             text: "Money",
@@ -131,8 +135,9 @@ class DontationStageScreen extends StatelessWidget {
             ),
             buttonStyle: CustomButtonStyles.fillGreenA,
           ),
-          SizedBox(height: 22.v),
+          SizedBox(height: 50.v),
           CustomElevatedButton(
+            height: 50,
             text: "Back",
             onPressed: () => Navigator.pushNamed(context, AppRoutes.donation),
             buttonTextStyle: TextStyle(color: Colors.white, fontSize: 16),

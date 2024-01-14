@@ -17,7 +17,7 @@ class DontationMoneyScreen extends StatefulWidget {
 }
 
 class Donatemoney extends State<DontationMoneyScreen> {
-  final List<String> titles = <String>[
+  final List<String> jml_donasi = <String>[
     '1',
     '5',
     '10',
@@ -160,7 +160,8 @@ class Donatemoney extends State<DontationMoneyScreen> {
       child: Wrap(
         runSpacing: 20.v,
         spacing: 20.h,
-        children: List<Widget>.generate(4, (index) => EighteenItemWidget("1")),
+        children: List<Widget>.generate(jml_donasi.length,
+            (index) => EighteenItemWidget(jml_donasi[index])),
       ),
     );
     //   return SelectGroupCard(context, titles: titles, ids: ids,

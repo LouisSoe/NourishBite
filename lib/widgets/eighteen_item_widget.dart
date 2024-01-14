@@ -14,7 +14,6 @@ class _EighteenItemWidgetState extends State<EighteenItemWidget>
   late AnimationController _controller;
   late Animation<double> _borderAnimation;
   bool _isSelected = false; // Track selection state
-
   @override
   void initState() {
     super.initState();
@@ -38,7 +37,7 @@ class _EighteenItemWidgetState extends State<EighteenItemWidget>
       showCheckmark: false,
       labelPadding: EdgeInsets.zero,
       label: Text(
-        "1",
+        widget.angka,
         style: TextStyle(
           color: appTheme.black900,
           fontSize: 30.fSize,
