@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
 
-// ignore: must_be_immutable
-class paymentwidget extends StatelessWidget {
-  const paymentwidget({Key? key})
-      : super(
-          key: key,
-        );
+class paymentwidget extends StatefulWidget {
+  const paymentwidget({Key? key}) : super(key: key);
+
+  @override
+  _PaymentWidgetState createState() => _PaymentWidgetState();
+}
+
+class _PaymentWidgetState extends State<paymentwidget> {
+  bool _isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,17 @@ class paymentwidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Radio<bool>(
+            value: true,
+            groupValue: _isSelected,
+            onChanged: (value) {
+              setState(() {
+                _isSelected = value!;
+              });
+            },
+            materialTapTargetSize: MaterialTapTargetSize
+                .shrinkWrap, // To reduce the tap target size
+          ),
           Container(
             margin: EdgeInsets.only(
               top: 3.v,
