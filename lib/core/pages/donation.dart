@@ -344,7 +344,7 @@ class DonateScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           return Padding(
-            padding: EdgeInsets.only(right: 20.h, left: 20.h, bottom: 20.h),
+            padding: EdgeInsets.only(right: 19.h, left: 20.h, bottom: 20.h),
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

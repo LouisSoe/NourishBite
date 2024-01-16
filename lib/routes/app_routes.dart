@@ -7,6 +7,7 @@ import 'package:NourishBite/core/pages/register.dart';
 import 'package:NourishBite/core/pages/donation.dart';
 import 'package:NourishBite/core/pages/pilih_donasi.dart';
 import 'package:NourishBite/core/pages/donationmoney.dart';
+import 'package:NourishBite/core/pages/detail_donation.dart';
 
 class AppRoutes {
   static const String loginScreen = '/login_screen';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String registerScreen = '/register';
   static const String homePage = '/home';
   static const String donation = '/donation';
+  static const String detaildonation = '/detail_donasi';
   static const String pilihdonasi = '/pilih_donasi';
   static const String donationmoney = '/donasi_money';
   static const String donationfood = '/donasi_food';
@@ -24,6 +26,7 @@ class AppRoutes {
     homePage: (context) => HomePage(),
     mapsScreen: (context) => Maps(),
     donation: (context) => DonateScreen(),
+    detaildonation: (context) => DetailDonasi(),
     pilihdonasi: (context) => DontationStageScreen(),
     donationmoney: (context) => DontationMoneyScreen(),
     donationfood: (context) => DonationFood(),

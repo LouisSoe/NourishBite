@@ -11,32 +11,36 @@ class Emergencychip1ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RawChip(
-      padding: EdgeInsets.symmetric(
-        horizontal: 4.h,
-        vertical: 1.v,
-      ),
-      showCheckmark: false,
-      labelPadding: EdgeInsets.zero,
-      label: Text(
-        kategory,
-        style: TextStyle(
-          color: appTheme.whiteA70002,
-          fontSize: 11.fSize,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w400,
+    return Wrap(
+      children: [
+        RawChip(
+          padding: EdgeInsets.symmetric(
+            horizontal: 4.h,
+            vertical: 1.v,
+          ),
+          showCheckmark: false,
+          labelPadding: EdgeInsets.zero,
+          label: Text(
+            kategory,
+            style: TextStyle(
+              color: appTheme.whiteA70002,
+              fontSize: 11.fSize,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          selected: false,
+          backgroundColor: theme.colorScheme.primaryContainer,
+          selectedColor: theme.colorScheme.primaryContainer,
+          shape: RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.circular(
+              5.h,
+            ),
+          ),
+          onSelected: (value) {},
         ),
-      ),
-      selected: false,
-      backgroundColor: theme.colorScheme.primaryContainer,
-      selectedColor: theme.colorScheme.primaryContainer,
-      shape: RoundedRectangleBorder(
-        side: BorderSide.none,
-        borderRadius: BorderRadius.circular(
-          5.h,
-        ),
-      ),
-      onSelected: (value) {},
+      ],
     );
   }
 }
