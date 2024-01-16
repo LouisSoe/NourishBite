@@ -190,10 +190,10 @@ class screenDetailDonasi extends State<DetailDonasi> {
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 5.h),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                // mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 6.v),
+                  SizedBox(height: 20.v),
                   Container(
                     decoration: ShapeDecoration(
                       color: Colors.white,
