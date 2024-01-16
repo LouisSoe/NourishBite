@@ -39,14 +39,11 @@ class HomePage extends StatelessWidget {
               onTabChange: (index) {
                 switch (index) {
                   case 0:
-                    // Navigate to Home route
                     Navigator.pushNamed(context, AppRoutes.homePage);
                     break;
                   case 1:
-                    // Navigate to Donate route
                     Navigator.pushNamed(context, AppRoutes.donation);
                     break;
-                  // ... and so on for other tabs
                 }
               }),
           body: Container(
@@ -290,7 +287,7 @@ class HomePage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           return Padding(
-            padding: EdgeInsets.only(right: 2.h, bottom: 20.h),
+            padding: EdgeInsets.only(bottom: 20.h),
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -309,9 +306,13 @@ class HomePage extends StatelessWidget {
               ) {
                 Map<String, dynamic> data =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
-                //parameter judul sisanya tambahin sendiri itu cuman contoh
-                return DonationcomponentlistItemWidget(data["judul"],
-                    data["status"], data["cover_gambar"], data["type"]);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.detaildonation);
+                  },
+                  child: DonationcomponentlistItemWidget(data["judul"],
+                      data["status"], data["cover_gambar"], data["type"]),
+                );
               },
             ),
           );

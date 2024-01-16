@@ -6,7 +6,6 @@ import 'package:NourishBite/core/app_export.dart';
 // import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
 import 'package:NourishBite/widgets/custom_text_form_field.dart';
-import 'package:NourishBite/widgets/select_group_card.dart';
 
 class DontationMoneyScreen extends StatefulWidget {
   const DontationMoneyScreen({Key? key})

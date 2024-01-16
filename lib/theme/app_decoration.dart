@@ -6,7 +6,17 @@ class AppDecoration {
   static BoxDecoration get fillPrimaryContainer => BoxDecoration(
         color: theme.colorScheme.primaryContainer,
       );
-
+  static BoxDecoration get gradientOnPrimaryContainerToOnPrimaryContainer =>
+      BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment(0.5, 1),
+          end: Alignment(0.5, 0),
+          colors: [
+            theme.colorScheme.onPrimaryContainer.withOpacity(0.6),
+            theme.colorScheme.onPrimaryContainer.withOpacity(0.6),
+          ],
+        ),
+      );
   // Outline decorations
   static BoxDecoration get outlineBlack => BoxDecoration();
 
