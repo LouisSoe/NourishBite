@@ -1,4 +1,5 @@
 import 'package:NourishBite/core/pages/homepage.dart';
+import 'package:NourishBite/core/pages/dashboard/dashboardpage.dart';
 import 'package:NourishBite/core/pages/login.dart';
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
@@ -28,6 +29,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
   final homeC = Get.put(DonationController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return Sizer(
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             return GetMaterialApp(
               theme: theme,
-              title: 'nourishBite',
+              title: 'NourishBite',
               debugShowCheckedModeBanner: false,
               home: snapshot.hasData ? HomePage() : LoginScreen(),
               routes: AppRoutes.routes,

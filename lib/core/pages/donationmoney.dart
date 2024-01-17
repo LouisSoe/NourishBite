@@ -22,12 +22,6 @@ class Donatemoney extends State<DontationMoneyScreen> {
     '10',
     '50',
   ];
-  final List<String> ids = <String>[
-    'id-123',
-    'id-134',
-    'id-145',
-    'id-156',
-  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -108,17 +102,6 @@ class Donatemoney extends State<DontationMoneyScreen> {
       ),
     );
   }
-
-  /// Section Widget
-  // PreferredSizeWidget _buildAppBar(BuildContext context) {
-  //   return CustomAppBar(
-  //     height: 64.v,
-  //     title: AppbarTitle(
-  //       text: "X",
-  //       margin: EdgeInsets.only(left: 8.h),
-  //     ),
-  //   );
-  // }
 
   /// Section Widget
   Widget _buildOne(BuildContext context) {

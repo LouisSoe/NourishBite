@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
+import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     Key? key,
     this.height,
+    this.styleType,
     this.leadingWidth,
     this.leading,
     this.title,
@@ -16,6 +17,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         );
 
   final double? height;
+
+  final Style? styleType;
 
   final double? leadingWidth;
 
@@ -31,9 +34,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      toolbarHeight: height ?? 56.v,
+      toolbarHeight: height ?? 46.v,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
+      flexibleSpace: _getStyle(),
       leadingWidth: leadingWidth ?? 0,
       leading: leading,
       title: title,
@@ -46,6 +50,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size(
         SizeUtils.width,
-        height ?? 56.v,
+        height ?? 46.v,
       );
+  _getStyle() {
+    switch (styleType) {
+      case Style.bgFill:
+        return Container(
+          height: 46.v,
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+            color: appTheme.blueGray800,
+          ),
+        );
+      default:
+        return null;
+    }
+  }
+}
+
+enum Style {
+  bgFill,
 }
