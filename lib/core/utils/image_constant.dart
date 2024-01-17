@@ -31,4 +31,12 @@ class ImageConstant {
   static String userroundedicon = '$imagePath/userroundedicon.svg';
   static String arrowleft = '$imagePath/arrow_left.svg';
   static String iconplus = '$imagePath/icon_plus.svg';
+  static String arrowright = '$imagePath/arrow_right.svg';
+  static String iconprivacy = '$imagePath/iconprivacy.svg';
+  static String arrowright2 = '$imagePath/arrowright2.svg';
+  static String icontime = '$imagePath/icon_time.svg';
+  static String iconheadphone = '$imagePath/iconheadphone.svg';
+  static String iconpencil = '$imagePath/icon_pencil.svg';
+  static String imgEllipse19 = '$imagePath/img_ellipse_19.png';
+  static String imgEllipse17 = '$imagePath/img_ellipse_17.png';
 }

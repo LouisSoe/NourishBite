@@ -1,5 +1,6 @@
 import 'package:NourishBite/core/pages/homepage.dart';
 import 'package:NourishBite/core/pages/login.dart';
+import 'package:NourishBite/core/pages/distribution.dart';
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
 import 'package:NourishBite/firebase_options.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
               theme: theme,
               title: 'NourishBite',
               debugShowCheckedModeBanner: false,
-              home: snapshot.hasData ? HomePage() : LoginScreen(),
+              // home: snapshot.hasData ? HomePage() : LoginScreen(),
+              home: DistributionScreen(),
               routes: AppRoutes.routes,
             );
           },
