@@ -31,7 +31,6 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
             child: Stack(
               alignment: Alignment.topLeft,
               children: [
-
                 CustomImageView(
                   fit: BoxFit.cover,
                   imagePath: image_cover,
@@ -127,7 +126,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         children: [
                           CustomImageView(
-                            imagePath: ImageConstant.imgEllipse28,
+                            imagePath: ImageConstant.imageNotFound,
                             height: 17.adaptSize,
                             width: 17.adaptSize,
                             radius: BorderRadius.circular(
@@ -136,7 +135,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                             alignment: Alignment.centerRight,
                           ),
                           CustomImageView(
-                            imagePath: ImageConstant.imgEllipse29,
+                            imagePath: ImageConstant.imageNotFound,
                             height: 17.adaptSize,
                             width: 17.adaptSize,
                             radius: BorderRadius.circular(
@@ -146,7 +145,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                             margin: EdgeInsets.only(right: 9.h),
                           ),
                           CustomImageView(
-                            imagePath: ImageConstant.imgEllipse30,
+                            imagePath: ImageConstant.imageNotFound,
                             height: 17.adaptSize,
                             width: 17.adaptSize,
                             radius: BorderRadius.circular(
@@ -156,7 +155,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                             margin: EdgeInsets.only(left: 9.h),
                           ),
                           CustomImageView(
-                            imagePath: ImageConstant.imgEllipse31,
+                            imagePath: ImageConstant.imageNotFound,
                             height: 17.adaptSize,
                             width: 17.adaptSize,
                             radius: BorderRadius.circular(

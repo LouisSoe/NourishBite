@@ -2,17 +2,17 @@ import 'package:NourishBite/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class AppbarTitle extends StatelessWidget {
-  AppbarTitle({
+class AppbarLeadingImage extends StatelessWidget {
+  AppbarLeadingImage({
     Key? key,
-    required this.text,
+    this.imagePath,
     this.margin,
     this.onTap,
   }) : super(
           key: key,
         );
 
-  String text;
+  String? imagePath;
 
   EdgeInsetsGeometry? margin;
 
@@ -20,17 +20,17 @@ class AppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         onTap!.call();
       },
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
-        child: Text(
-          text,
-          style: theme.textTheme.titleLarge!.copyWith(
-            color: appTheme.whiteA700,
-          ),
+        child: CustomImageView(
+          imagePath: imagePath,
+          height: 35.adaptSize,
+          width: 35.adaptSize,
+          fit: BoxFit.contain,
         ),
       ),
     );

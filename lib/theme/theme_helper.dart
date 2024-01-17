@@ -131,6 +131,7 @@ class ColorSchemes {
 class PrimaryColors {
   // Black
   Color get black900 => Color(0XFF000000);
+  Color get black90001 => Color(0XFF000000);
   // Amber
   Color get amber600 => Color(0XFFFFB600);
   Color get amber700 => Color(0XFFDD9E00);
@@ -169,6 +170,7 @@ class PrimaryColors {
 
   // Green
   Color get green800 => Color(0XFF2C6442);
+  Color get green400 => Color(0XFF66986D);
   Color get greenA700 => Color(0XFF00AC3F);
   Color get greenA70001 => Color(0XFF00B470);
 

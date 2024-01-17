@@ -53,16 +53,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBvSPfXdZH9XmAUZtjGhDr2-zCdYHy2-yM',
     appId: '1:212511382840:android:f83670c091f677d20ab5cd',
     messagingSenderId: '212511382840',
-    projectId: 'nourishbite-4be09',
-    storageBucket: 'nourishbite-4be09.appspot.com',
+    projectId: 'NourishBite-4be09',
+    storageBucket: 'NourishBite-4be09.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAeR5tAK3V0O60n-dxu25niI8-T-v61L84',
     appId: '1:212511382840:ios:67bc0bb570192a610ab5cd',
     messagingSenderId: '212511382840',
-    projectId: 'nourishbite-4be09',
-    storageBucket: 'nourishbite-4be09.appspot.com',
+    projectId: 'NourishBite-4be09',
+    storageBucket: 'NourishBite-4be09.appspot.com',
     iosBundleId: 'com.parallelsapplication.app',
   );
 }
