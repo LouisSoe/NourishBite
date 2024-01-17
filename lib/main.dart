@@ -1,5 +1,4 @@
 import 'package:NourishBite/core/pages/homepage.dart';
-import 'package:NourishBite/core/pages/dashboard/dashboardpage.dart';
 import 'package:NourishBite/core/pages/login.dart';
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
@@ -8,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
+// import 'package:flutter/scheduler.dart';
 import 'core/app_export.dart';
 import 'package:get/get.dart';
 
