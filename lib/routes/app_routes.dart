@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:NourishBite/core/pages/login.dart';
 import 'package:NourishBite/core/pages/register.dart';
 import 'package:NourishBite/core/pages/donation.dart';
+import 'package:NourishBite/core/pages/distribution.dart';
+import 'package:NourishBite/core/pages/detail_distribution.dart';
+import 'package:NourishBite/core/pages/nearestdistribution.dart';
 import 'package:NourishBite/core/pages/pilih_donasi.dart';
 import 'package:NourishBite/core/pages/donationmoney.dart';
 import 'package:NourishBite/core/pages/detail_donation.dart';
@@ -13,6 +16,7 @@ import 'package:NourishBite/core/pages/dashboard/distributionpageadmin.dart';
 import 'package:NourishBite/core/pages/dashboard/donatepageadmin.dart';
 import 'package:NourishBite/core/pages/dashboard/foodbankadmin.dart';
 import 'package:NourishBite/core/pages/dashboard/userpageadmin.dart';
+import 'package:NourishBite/core/pages/profile.dart';
 
 class AppRoutes {
   static const String loginScreen = '/login_screen';
@@ -21,6 +25,9 @@ class AppRoutes {
   static const String homePage = '/home';
   static const String donation = '/donation';
   static const String detaildonation = '/detail_donasi';
+  static const String distribution = '/distribution';
+  static const String detaildistribution = '/detaildistribution';
+  static const String nearestdistribution = '/nearestdistribution';
   static const String pilihdonasi = '/pilih_donasi';
   static const String donationmoney = '/donasi_money';
   static const String donationfood = '/donasi_food';
@@ -29,6 +36,7 @@ class AppRoutes {
   static const String donatepageadmin = '/donatepageadmin';
   static const String foodbankadmin = '/foodbankadmin';
   static const String userpageadmin = '/userpageadmin';
+  static const String profile = '/profile';
 
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
@@ -36,6 +44,7 @@ class AppRoutes {
     homePage: (context) => HomePage(),
     mapsScreen: (context) => Maps(),
     donation: (context) => DonateScreen(),
+    distribution: (context) => DistributionScreen(),
     detaildonation: (context) => DetailDonasi(),
     pilihdonasi: (context) => DontationStageScreen(),
     donationmoney: (context) => DontationMoneyScreen(),
@@ -45,5 +54,8 @@ class AppRoutes {
     donatepageadmin: (context) => Donatepageadmin(),
     foodbankadmin: (context) => Foodbankadmin(),
     userpageadmin: (context) => Userpageadmin(),
+    detaildistribution: (context) => DetailDistribution(),
+    nearestdistribution: (context) => Nearestdistribution(),
+    profile: (context) => ProfilePage(),
   };
 }

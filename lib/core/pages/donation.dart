@@ -47,6 +47,14 @@ class DonateScreen extends StatelessWidget {
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.donation);
                     break;
+                  case 2:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.distribution);
+                    break;
+                     case 3:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.profile);
+                    break;
                 }
               }),
           backgroundColor: Colors.white,

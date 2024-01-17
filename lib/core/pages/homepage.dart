@@ -44,6 +44,14 @@ class HomePage extends StatelessWidget {
                   case 1:
                     Navigator.pushNamed(context, AppRoutes.donation);
                     break;
+                  case 2:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.distribution);
+                    break;
+                  case 3:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.profile);
+                    break;
                 }
               }),
           body: Container(

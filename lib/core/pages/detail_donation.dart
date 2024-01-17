@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
-import 'package:NourishBite/widgets/app_bar/appbar_title.dart';
 // import 'package:NourishBite/widgets/app_bar/appbar_trailing_image.dart';
-import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
 
 class DetailDonasi extends StatefulWidget {
@@ -194,15 +192,18 @@ class screenDetailDonasi extends State<DetailDonasi> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.v),
-                  Container(
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: OvalBorder(
-                        side: BorderSide(width: 1, color: Color(0xFF234A40)),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: Container(
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: OvalBorder(
+                          side: BorderSide(width: 1, color: Color(0xFF234A40)),
+                        ),
                       ),
-                    ),
-                    child: CloseButton(
-                      color: Colors.black, // CloseButton color
+                      child: CloseButton(
+                        color: Colors.black, // CloseButton color
+                      ),
                     ),
                   ),
                   SizedBox(height: 120.v),
