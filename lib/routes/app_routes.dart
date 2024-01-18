@@ -1,3 +1,7 @@
+import 'package:NourishBite/core/pages/admin/dashboard.dart';
+import 'package:NourishBite/core/pages/admin/form_foodbank.dart';
+import 'package:NourishBite/core/pages/admin/form_program.dart';
+import 'package:NourishBite/core/pages/admin/program.dart';
 import 'package:NourishBite/core/pages/donationfood.dart';
 import 'package:NourishBite/core/pages/homepage.dart';
 import 'package:NourishBite/core/pages/maps.dart';
@@ -17,6 +21,10 @@ class AppRoutes {
   static const String pilihdonasi = '/pilih_donasi';
   static const String donationmoney = '/donasi_money';
   static const String donationfood = '/donasi_food';
+  static const String dashboard = '/dashboard';
+  static const String program = '/program';
+  static const String formprogram = '/form_program';
+  static const String formfoodbank = '/form_foodbank';
 
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
@@ -27,5 +35,9 @@ class AppRoutes {
     pilihdonasi: (context) => DontationStageScreen(),
     donationmoney: (context) => DontationMoneyScreen(),
     donationfood: (context) => DonationFood(),
+    dashboard: (context) => DashboardPage(),
+    program: (context) => Program(),
+    formprogram: (context) => FormProgram(),
+    formfoodbank: (context) => FormFoodBank(),
   };
 }

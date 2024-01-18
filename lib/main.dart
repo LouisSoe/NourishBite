@@ -1,7 +1,9 @@
+import 'package:NourishBite/core/pages/admin/dashboard.dart';
 import 'package:NourishBite/core/pages/homepage.dart';
 import 'package:NourishBite/core/pages/login.dart';
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
+import 'package:NourishBite/core/utils/controllers/foodbank_controller.dart';
 import 'package:NourishBite/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +30,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
   final homeC = Get.put(DonationController(), permanent: true);
+  final foodBankC = Get.put(FoodbankController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return Sizer(
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
               theme: theme,
               title: 'nourishBite',
               debugShowCheckedModeBanner: false,
-              home: snapshot.hasData ? HomePage() : LoginScreen(),
+              home: snapshot.hasData ? DashboardPage() : LoginScreen(),
               routes: AppRoutes.routes,
             );
           },

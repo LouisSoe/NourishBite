@@ -46,6 +46,9 @@ class HomePage extends StatelessWidget {
                     // Navigate to Donate route
                     Navigator.pushNamed(context, AppRoutes.donation);
                     break;
+                  case 2:
+                    authC.signOut();
+                    break;
                   // ... and so on for other tabs
                 }
               }),

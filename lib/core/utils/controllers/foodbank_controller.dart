@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storage;
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class DonationController extends GetxController {
+class FoodbankController extends GetxController {
   final _fStore = FirebaseFirestore.instance;
   final _fStorage = storage.FirebaseStorage.instance;
   final _imgPicker = ImagePicker();
@@ -39,11 +40,13 @@ class DonationController extends GetxController {
     update();
   }
 
-  void addProgram(String judul, String overview, String keterangan) async {
-    if (judul.isNotEmpty && overview.isNotEmpty && keterangan.isNotEmpty) {
+  void addProgram(String judul, String address) async {
+    if (judul.isNotEmpty && address.isNotEmpty) {
       if (image != null) {
         File file = File(image!.path);
         var fileName = image!.name;
+        Position pos = await determinePosition();
+        print(pos.latitude);
         try {
           await _fStorage.ref("program_image/$fileName").putFile(file);
           String urlImg =
@@ -51,14 +54,12 @@ class DonationController extends GetxController {
 
           await _fStore.collection("programs").add({
             "judul": judul,
-            "detail_donation": {
-              "keterangan": keterangan,
-              "overview": overview,
+            "address": address,
+            "position": {
+              "lat": pos.latitude,
+              "long": pos.longitude,
             },
-            "isEmergency": true,
-            "status": "on going",
             "cover_image": urlImg,
-            "type": ["Emergency", "Nutrition"]
           });
           print("Berhasil upload");
         } on storage.FirebaseException catch (e) {
@@ -68,7 +69,32 @@ class DonationController extends GetxController {
         print("Gambar tidak ada");
       }
     } else {
-      print("$judul , $overview, $keterangan");
+      print("Harus diisi secara lengkap");
     }
+  }
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 }
