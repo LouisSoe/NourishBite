@@ -4,6 +4,7 @@ import 'package:NourishBite/core/app_export.dart';
 // // import 'package:NourishBite/widgets/app_bar/appbar_trailing_image.dart';
 // import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
@@ -18,8 +19,14 @@ class DetailDistribution extends StatefulWidget {
   State<DetailDistribution> createState() => screenDetailDistribution();
 }
 
+final Map<String, dynamic> data = Get.arguments;
+double lat = data["position"]["lat"];
+double long = data["position"]["long"];
+final destination = LatLng(lat, long);
+
 class screenDetailDistribution extends State<DetailDistribution> {
   bool expanded = false;
+
   @override
   Widget build(BuildContext context) {
     final Completer<GoogleMapController> _mapcon = Completer();
@@ -129,7 +136,7 @@ class screenDetailDistribution extends State<DetailDistribution> {
                         width: 339.h,
                         margin: EdgeInsets.only(right: 10.h),
                         child: Text(
-                          "Shared meals will help provide food baskets, cash transfers, children meals and nutrition support in Germany.",
+                          "${data["detail_donation"]["overview"]}",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -148,7 +155,7 @@ class screenDetailDistribution extends State<DetailDistribution> {
                                   maxHeight:
                                       12 * 7), // Adjust maxHeight as needed
                           child: Text(
-                            "In Germany, despite being a developed nation, hunger remains a challenge, especially among vulnerable groups like low-income families and refugees due to economic disparities. Government initiatives and nonprofits are actively working to address food insecurity by ensuring access to nutritious diets. Mobile technology plays a vital role in connecting those in need with essential resources, fostering a community-driven approach. Stay tuned for updates and opportunities to contribute as we work towards a more inclusive and nourished society in Germany.",
+                            "${data["detail_donation"]["tentang"]}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 96, 96, 96),
@@ -179,8 +186,8 @@ class screenDetailDistribution extends State<DetailDistribution> {
                   ),
                   child: GoogleMap(
                     mapType: MapType.normal,
-                    initialCameraPosition: CameraPosition(
-                        target: DetailDistribution.source, zoom: 13.5),
+                    initialCameraPosition:
+                        CameraPosition(target: destination, zoom: 13.5),
                     onMapCreated: (GoogleMapController controller) {
                       if (!_mapcon.isCompleted) {
                         _mapcon.complete(controller);
@@ -189,7 +196,7 @@ class screenDetailDistribution extends State<DetailDistribution> {
                     markers: {
                       Marker(
                         markerId: MarkerId("destination"),
-                        position: DetailDistribution.des,
+                        position: destination,
                       ),
                     },
                   ),
@@ -213,7 +220,8 @@ class screenDetailDistribution extends State<DetailDistribution> {
         alignment: Alignment.center,
         children: [
           CustomImageView(
-            imagePath: ImageConstant.imgRectangle36,
+            imagePath: data["cover_image"],
+            fit: BoxFit.cover,
             height: 294.v,
             width: 390.h,
             alignment: Alignment.center,
@@ -246,7 +254,7 @@ class screenDetailDistribution extends State<DetailDistribution> {
                     width: 230.h,
                     margin: EdgeInsets.only(left: 10.h),
                     child: Text(
-                      "Nutrition Food distribution in San pedro",
+                      "${data["program_name"]}",
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

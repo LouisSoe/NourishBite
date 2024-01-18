@@ -52,6 +52,7 @@ class AppRoutes {
     donation: (context) => DonateScreen(),
     distribution: (context) => DistributionScreen(),
     detaildonation: (context) => DetailDonasi(),
+    detaildistribution: (context) => DetailDistribution(),
     pilihdonasi: (context) => DontationStageScreen(),
     donationmoney: (context) => DontationMoneyScreen(),
     donationfood: (context) => DonationFood(),

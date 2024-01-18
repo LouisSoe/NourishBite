@@ -1,5 +1,4 @@
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
-import 'package:NourishBite/widgets/viewhierarchy_item_widget.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/app_bar/appbar_title.dart';
 import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';
@@ -253,25 +252,6 @@ class Donatepageadmin extends StatelessWidget {
       ),
     );
   }
-
-  /// Section Widget
-  Widget _buildViewHierarchy(BuildContext context) {
-    return ListView.separated(
-      physics: BouncingScrollPhysics(),
-      shrinkWrap: true,
-      separatorBuilder: (context, index) {
-        return SizedBox(
-          height: 21.v,
-        );
-      },
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return ViewhierarchyItemWidget();
-      },
-    );
-  }
-
-  /// Section Widget
 
   /// Section Widget
   Widget _buildFloatingActionButton(BuildContext context) {

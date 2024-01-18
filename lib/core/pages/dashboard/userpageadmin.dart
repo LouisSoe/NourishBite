@@ -1,5 +1,4 @@
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
-import 'package:NourishBite/widgets/viewhierarchy_user_widget.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/app_bar/appbar_title.dart';
 import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';

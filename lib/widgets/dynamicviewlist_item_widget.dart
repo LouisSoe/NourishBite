@@ -4,7 +4,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class DynamicviewlistItemWidget extends StatelessWidget {
-  const DynamicviewlistItemWidget({Key? key})
+  final String program_name;
+  final String address;
+  final String status;
+  final String imgPath;
+  final String distribute_date;
+  
+  const DynamicviewlistItemWidget(this.program_name,
+  this.address, this.status, this.imgPath, this.distribute_date,
+    {Key? key})
       : super(
           key: key,
         );
@@ -25,7 +33,7 @@ class DynamicviewlistItemWidget extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 CustomImageView(
-                  imagePath: ImageConstant.imgRectangle30,
+                  imagePath: imgPath,
                   height: 135.v,
                   width: 130.h,
                   radius: BorderRadius.horizontal(
@@ -71,7 +79,7 @@ class DynamicviewlistItemWidget extends StatelessWidget {
                                     top: 106.v,
                                   ),
                                   child: Text(
-                                    "3 days left",
+                                    distribute_date,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 13,
@@ -94,7 +102,7 @@ class DynamicviewlistItemWidget extends StatelessWidget {
                               borderRadius: BorderRadiusStyle.customBorderTL51,
                             ),
                             child: Text(
-                              "Ongoing",
+                              status,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),
                             ),
@@ -131,7 +139,7 @@ class DynamicviewlistItemWidget extends StatelessWidget {
                             child: SizedBox(
                               width: 155.h,
                               child: Text(
-                                "Nutrition Food distribution in San pedro",
+                                program_name + "\n" + address,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: theme.textTheme.titleMedium,

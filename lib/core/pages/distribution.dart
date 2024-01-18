@@ -1,6 +1,8 @@
+import 'package:NourishBite/core/utils/controllers/distribution_controller.dart';
 import 'package:NourishBite/widgets/dynamicviewlist_item_widget.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ class DistributionScreen extends StatelessWidget {
         );
 
   TextEditingController searchController = TextEditingController();
-
+  final distrbutionC = Get.find<DistributionController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -147,28 +149,48 @@ class DistributionScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildDynamicViewList(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 3.h),
-      child: ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return SizedBox(
-            height: 21.v,
-          );
-        },
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, AppRoutes.detaildistribution);
+    return StreamBuilder<QuerySnapshot<Object?>>(
+        stream: distrbutionC.getDistribution(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          return Padding(
+            padding: EdgeInsets.only(left: 3.h),
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              separatorBuilder: (
+                context,
+                index,
+              ) {
+                return SizedBox(
+                  height: 21.v,
+                );
               },
-              child: DynamicviewlistItemWidget());
-        },
-      ),
-    );
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                Map<String, dynamic> data =
+                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                return GestureDetector(
+                  onTap: () => Get.toNamed(
+                    AppRoutes.detaildistribution,
+                    arguments: data,
+                  ),
+                  child: DynamicviewlistItemWidget(
+                    data["program_name"],
+                    data["address"],
+                    data["status"],
+                    data["cover_image"],
+                    data["distribute_date"],
+                  ),
+                );
+              },
+            ),
+          );
+        });
   }
 }
