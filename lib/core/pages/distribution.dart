@@ -47,7 +47,7 @@ class DistributionScreen extends StatelessWidget {
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.distribution);
                     break;
-                     case 3:
+                  case 3:
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.profile);
                     break;
@@ -104,12 +104,19 @@ class DistributionScreen extends StatelessWidget {
                     width: 193.h,
                     text: "Find nearest distribution",
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.nearestdistribution);
+                      Navigator.pushNamed(
+                          context, AppRoutes.nearestdistribution);
                     },
                     buttonTextStyle: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   _buildFeatureDistributionRow(context),
+                  SizedBox(
+                    height: 10,
+                  ),
                   _buildDynamicViewList(context),
                 ],
               ),
@@ -130,7 +137,7 @@ class DistributionScreen extends StatelessWidget {
         children: [
           Text(
             "Feature Distribution",
-            style: theme.textTheme.titleLarge,
+            style: TextStyle(color: Colors.black, fontSize: 23),
           ),
           Spacer(),
         ],
