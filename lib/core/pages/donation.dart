@@ -51,7 +51,7 @@ class DonateScreen extends StatelessWidget {
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.distribution);
                     break;
-                     case 3:
+                  case 3:
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.profile);
                     break;
@@ -232,7 +232,7 @@ class DonateScreen extends StatelessWidget {
                 children: [
                   CustomImageView(
                     fit: BoxFit.cover,
-                    imagePath: data["cover_gambar"],
+                    imagePath: data["cover_image"],
                     height: 150.v,
                     width: 348.h,
                     radius: BorderRadius.circular(
@@ -272,7 +272,7 @@ class DonateScreen extends StatelessWidget {
                             width: 247.h,
                             margin: EdgeInsets.only(left: 11.h),
                             child: Text(
-                              data["judul"],
+                              data["donation_name"],
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -329,8 +329,8 @@ class DonateScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     Map<String, dynamic> data = snapshot.data!.docs[index]
                         .data() as Map<String, dynamic>;
-                    return EmergencylistItemWidget(
-                        data["judul"], data["cover_gambar"], data["type"]);
+                    return EmergencylistItemWidget(data["donation_name"],
+                        data["cover_image"], data["type"]);
                   },
                 );
               } else {
@@ -372,8 +372,8 @@ class DonateScreen extends StatelessWidget {
                 Map<String, dynamic> data =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
                 //parameter judul sisanya tambahin sendiri itu cuman contoh
-                return DonationcomponentlistItemWidget(data["judul"],
-                    data["status"], data["cover_gambar"], data["type"]);
+                return DonationcomponentlistItemWidget(data["donation_name"],
+                    data["isEmergency"], data["cover_image"], data["type"]);
               },
             ),
           );

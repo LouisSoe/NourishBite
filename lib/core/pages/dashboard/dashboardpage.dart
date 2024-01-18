@@ -1,12 +1,15 @@
 import 'package:NourishBite/core/app_export.dart';
+import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AdminPageScreen extends StatelessWidget {
-  const AdminPageScreen({Key? key})
+  AdminPageScreen({Key? key})
       : super(
           key: key,
         );
 
+  final authC = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -115,7 +118,7 @@ class AdminPageScreen extends StatelessWidget {
               bottom: 30.v,
             ),
             // logout f
-            // onTap: () => {},
+            onTap: () => authC.signOut(),
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storage;
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,8 +12,8 @@ class FoodbankController extends GetxController {
   final _fStorage = storage.FirebaseStorage.instance;
   final _imgPicker = ImagePicker();
   XFile? image;
-  Stream<QuerySnapshot<Object?>> getDonation() {
-    CollectionReference ref = _fStore.collection("donations");
+  Stream<QuerySnapshot<Object?>> getFoodBank() {
+    CollectionReference ref = _fStore.collection("food_banks");
     return ref.snapshots();
   }
 
@@ -48,12 +49,12 @@ class FoodbankController extends GetxController {
         Position pos = await determinePosition();
         print(pos.latitude);
         try {
-          await _fStorage.ref("program_image/$fileName").putFile(file);
+          await _fStorage.ref("foodbank_image/$fileName").putFile(file);
           String urlImg =
-              await _fStorage.ref("program_image/$fileName").getDownloadURL();
+              await _fStorage.ref("foodbank_image/$fileName").getDownloadURL();
 
-          await _fStore.collection("programs").add({
-            "judul": judul,
+          await _fStore.collection("food_banks").add({
+            "foodbank_name": judul,
             "address": address,
             "position": {
               "lat": pos.latitude,
@@ -61,7 +62,25 @@ class FoodbankController extends GetxController {
             },
             "cover_image": urlImg,
           });
-          print("Berhasil upload");
+          image = null;
+          Get.defaultDialog(
+            title: "Berhasil Submit",
+            middleText: "Berhasil memasukan data foodbank",
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                  Get.back();
+                },
+                child: Text(
+                  'Ok',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
+          );
         } on storage.FirebaseException catch (e) {
           print(e);
         }

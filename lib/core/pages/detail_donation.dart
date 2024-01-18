@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
 // import 'package:NourishBite/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
 
 class DetailDonasi extends StatefulWidget {
   const DetailDonasi({Key? key})
@@ -11,6 +12,9 @@ class DetailDonasi extends StatefulWidget {
   @override
   State<DetailDonasi> createState() => screenDetailDonasi();
 }
+
+final Map<String, dynamic> data = Get.arguments;
+List<String>? types = data["type"]?.cast<String>();
 
 class screenDetailDonasi extends State<DetailDonasi> {
   bool expanded = false;
@@ -24,7 +28,10 @@ class screenDetailDonasi extends State<DetailDonasi> {
             width: double.maxFinite,
             child: Column(
               children: [
-                _buildMainStack(context),
+                _buildMainStack(
+                  context,
+                  data["cover_image"],
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.h,
@@ -35,67 +42,8 @@ class screenDetailDonasi extends State<DetailDonasi> {
                     children: [
                       Row(
                         children: [
-                          Container(
-                            height: 22.v,
-                            width: 81.h,
-                            margin: EdgeInsets.only(left: 4.h),
-                            child: Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    height: 30.v,
-                                    width: 90.h,
-                                    decoration: BoxDecoration(
-                                      color: theme.colorScheme.onPrimary,
-                                      borderRadius: BorderRadius.circular(
-                                        5.h,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text("Emergency",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 22.v,
-                            width: 81.h,
-                            margin: EdgeInsets.only(left: 4.h),
-                            child: Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    height: 22.v,
-                                    width: 81.h,
-                                    decoration: BoxDecoration(
-                                      color: theme.colorScheme.onPrimary,
-                                      borderRadius: BorderRadius.circular(
-                                        5.h,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Nutrition",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          typeList(
+                            nameType: types![0],
                           ),
                         ],
                       ),
@@ -122,7 +70,7 @@ class screenDetailDonasi extends State<DetailDonasi> {
                         width: 339.h,
                         margin: EdgeInsets.only(right: 10.h),
                         child: Text(
-                          "Shared meals will help provide food baskets, cash transfers, children meals and nutrition support in Germany.",
+                          "${data["detail_donation"]["overview"]}",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -141,7 +89,7 @@ class screenDetailDonasi extends State<DetailDonasi> {
                                   maxHeight:
                                       12 * 7), // Adjust maxHeight as needed
                           child: Text(
-                            "In Germany, despite being a developed nation, hunger remains a challenge, especially among vulnerable groups like low-income families and refugees due to economic disparities. Government initiatives and nonprofits are actively working to address food insecurity by ensuring access to nutritious diets. Mobile technology plays a vital role in connecting those in need with essential resources, fostering a community-driven approach. Stay tuned for updates and opportunities to contribute as we work towards a more inclusive and nourished society in Germany.",
+                            "${data["detail_donation"]["keterangan"]}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 96, 96, 96),
@@ -170,7 +118,7 @@ class screenDetailDonasi extends State<DetailDonasi> {
   }
 
   /// Section Widget
-  Widget _buildMainStack(BuildContext context) {
+  Widget _buildMainStack(BuildContext context, String imgUrl) {
     return SizedBox(
       height: 294.v,
       width: double.maxFinite,
@@ -178,7 +126,8 @@ class screenDetailDonasi extends State<DetailDonasi> {
         alignment: Alignment.center,
         children: [
           CustomImageView(
-            imagePath: ImageConstant.imgRectangle36,
+            fit: BoxFit.cover,
+            imagePath: imgUrl,
             height: 294.v,
             width: 390.h,
             alignment: Alignment.center,
@@ -211,7 +160,7 @@ class screenDetailDonasi extends State<DetailDonasi> {
                     width: 230.h,
                     margin: EdgeInsets.only(left: 10.h),
                     child: Text(
-                      "Help families in Germany",
+                      "${data["donation_name"]}",
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -239,6 +188,50 @@ class screenDetailDonasi extends State<DetailDonasi> {
         left: 20.h,
         right: 21.h,
         bottom: 31.v,
+      ),
+    );
+  }
+}
+
+class typeList extends StatelessWidget {
+  final String nameType;
+  const typeList({
+    required this.nameType,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 22.v,
+      width: 81.h,
+      margin: EdgeInsets.only(left: 4.h),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 22.v,
+              width: 81.h,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onPrimary,
+                borderRadius: BorderRadius.circular(
+                  5.h,
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              nameType,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

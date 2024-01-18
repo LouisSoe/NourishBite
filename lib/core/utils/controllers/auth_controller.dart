@@ -69,6 +69,11 @@ class AuthController extends GetxController {
     return _fStore.collection("users").doc(uid).get();
   }
 
+   Stream<QuerySnapshot<Object?>> getUser() {
+    CollectionReference ref = _fStore.collection("users");
+    return ref.snapshots();
+  }
+
   // Stream<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async* {
   //   try {
   //     yield* _fStore.collection("users").doc(uid).snapshots();

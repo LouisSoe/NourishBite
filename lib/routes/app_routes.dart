@@ -1,7 +1,6 @@
-import 'package:NourishBite/core/pages/admin/dashboard.dart';
-import 'package:NourishBite/core/pages/admin/form_foodbank.dart';
-import 'package:NourishBite/core/pages/admin/form_program.dart';
-import 'package:NourishBite/core/pages/admin/program.dart';
+import 'package:NourishBite/core/pages/dashboard/form_donation.dart';
+import 'package:NourishBite/core/pages/dashboard/form_foodbank.dart';
+import 'package:NourishBite/core/pages/dashboard/form_program.dart';
 import 'package:NourishBite/core/pages/donationfood.dart';
 import 'package:NourishBite/core/pages/homepage.dart';
 import 'package:NourishBite/core/pages/maps.dart';
@@ -36,6 +35,9 @@ class AppRoutes {
   static const String donationmoney = '/donasi_money';
   static const String donationfood = '/donasi_food';
   static const String dashboard = '/dashboard';
+  static const String foodbankform = '/foodbank_form';
+  static const String distributionform = '/distribution_form';
+  static const String donationform = '/donation_form';
   static const String distributionadmin = '/distributionadmin';
   static const String donatepageadmin = '/donatepageadmin';
   static const String foodbankadmin = '/foodbankadmin';
@@ -53,5 +55,15 @@ class AppRoutes {
     pilihdonasi: (context) => DontationStageScreen(),
     donationmoney: (context) => DontationMoneyScreen(),
     donationfood: (context) => DonationFood(),
+    nearestdistribution: (context) => Nearestdistribution(),
+    dashboard: (context) => AdminPageScreen(),
+    donatepageadmin: (context) => Donatepageadmin(),
+    profile: (context) => ProfilePage(),
+    userpageadmin: (context) => Userpageadmin(),
+    foodbankadmin: (context) => Foodbankadmin(),
+    donationform: (context) => FormDonation(),
+    distributionadmin: (context) => DistributionAdminScreen(),
+    foodbankform: (context) => FormFoodBank(),
+    distributionform: (context) => FormProgram(),
   };
 }

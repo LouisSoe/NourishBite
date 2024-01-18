@@ -4,11 +4,10 @@ import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:NourishBite/core/app_export.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
-class FormProgram extends StatelessWidget {
-  FormProgram({Key? key}) : super(key: key);
+class FormDonation extends StatelessWidget {
+  FormDonation({Key? key}) : super(key: key);
 
   final judulCon = TextEditingController();
   final overviewCon = TextEditingController();
@@ -17,22 +16,6 @@ class FormProgram extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final donationC = Get.find<DonationController>();
-  Future<Position> determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-    }
-
-    return await Geolocator.getCurrentPosition();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +45,7 @@ class FormProgram extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 59.v),
-                    _buildInput(context, judulCon, "Username"),
+                    _buildInput(context, judulCon, "Donation Name"),
                     SizedBox(height: 11.v),
                     _buildInput(context, overviewCon, "Overview"),
                     SizedBox(height: 11.v),
@@ -111,7 +94,7 @@ class FormProgram extends StatelessWidget {
       BuildContext context, String judul, String overview, String keterangan) {
     return CustomElevatedButton(
       text: "Submit",
-      onPressed: () => donationC.addProgram(
+      onPressed: () => donationC.addDonation(
         judul,
         overview,
         keterangan,

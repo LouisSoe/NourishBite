@@ -315,11 +315,13 @@ class HomePage extends StatelessWidget {
                 Map<String, dynamic> data =
                     snapshot.data!.docs[index].data() as Map<String, dynamic>;
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.detaildonation);
-                  },
-                  child: DonationcomponentlistItemWidget(data["judul"],
-                      data["status"], data["cover_gambar"], data["type"]),
+                  onTap: () => Get.toNamed(AppRoutes.detaildonation, arguments: data),
+                  child: DonationcomponentlistItemWidget(
+                    data["donation_name"],
+                    data["isEmergency"],
+                    data["cover_image"],
+                    data["type"],
+                  ),
                 );
               },
             ),

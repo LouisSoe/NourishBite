@@ -5,7 +5,7 @@ import 'package:NourishBite/core/app_export.dart';
 // ignore: must_be_immutable
 class DonationcomponentlistItemWidget extends StatelessWidget {
   final String judul;
-  final String status;
+  final bool status;
   final String image_cover;
   final List<dynamic> type;
   const DonationcomponentlistItemWidget(
@@ -53,7 +53,7 @@ class DonationcomponentlistItemWidget extends StatelessWidget {
                       borderRadius: BorderRadiusStyle.customBorderTL51,
                     ),
                     child: Text(
-                      status,
+                      (status) ? "Donate now" : "Emergency",
                       style: TextStyle(
                         color: appTheme.whiteA70002,
                         fontSize: 10.0,
