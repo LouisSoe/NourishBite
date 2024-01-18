@@ -1,6 +1,7 @@
 import 'package:NourishBite/core/pages/admin/dashboard.dart';
 import 'package:NourishBite/core/pages/homepage.dart';
 import 'package:NourishBite/core/pages/login.dart';
+import 'package:NourishBite/core/pages/distribution.dart';
 import 'package:NourishBite/core/utils/controllers/auth_controller.dart';
 import 'package:NourishBite/core/utils/controllers/donation_controller.dart';
 import 'package:NourishBite/core/utils/controllers/foodbank_controller.dart';
@@ -9,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
+// import 'package:flutter/scheduler.dart';
 import 'core/app_export.dart';
 import 'package:get/get.dart';
 
@@ -40,9 +41,9 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             return GetMaterialApp(
               theme: theme,
-              title: 'nourishBite',
+              title: 'NourishBite',
               debugShowCheckedModeBanner: false,
-              home: snapshot.hasData ? DashboardPage() : LoginScreen(),
+              home: snapshot.hasData ? HomePage() : LoginScreen(),
               routes: AppRoutes.routes,
             );
           },

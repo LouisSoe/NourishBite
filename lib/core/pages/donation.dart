@@ -47,6 +47,14 @@ class DonateScreen extends StatelessWidget {
                     // Navigate to Donate route
                     Get.toNamed(AppRoutes.donation);
                     break;
+                  case 2:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.distribution);
+                    break;
+                     case 3:
+                    // Navigate to Donate route
+                    Get.toNamed(AppRoutes.profile);
+                    break;
                 }
               }),
           backgroundColor: Colors.white,
@@ -344,7 +352,7 @@ class DonateScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           return Padding(
-            padding: EdgeInsets.only(right: 20.h, left: 20.h, bottom: 20.h),
+            padding: EdgeInsets.only(right: 19.h, left: 20.h, bottom: 20.h),
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

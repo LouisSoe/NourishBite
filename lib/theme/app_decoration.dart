@@ -6,7 +6,31 @@ class AppDecoration {
   static BoxDecoration get fillPrimaryContainer => BoxDecoration(
         color: theme.colorScheme.primaryContainer,
       );
-
+  static BoxDecoration get outlineBlack90001 => BoxDecoration(
+        color: appTheme.green400,
+        boxShadow: [
+          BoxShadow(
+            color: appTheme.black90001.withOpacity(0.25),
+            spreadRadius: 2.h,
+            blurRadius: 2.h,
+            offset: Offset(
+              0,
+              4,
+            ),
+          ),
+        ],
+      );
+  static BoxDecoration get gradientOnPrimaryContainerToOnPrimaryContainer =>
+      BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment(0.5, 1),
+          end: Alignment(0.5, 0),
+          colors: [
+            theme.colorScheme.onPrimaryContainer.withOpacity(0.6),
+            theme.colorScheme.onPrimaryContainer.withOpacity(0.6),
+          ],
+        ),
+      );
   // Outline decorations
   static BoxDecoration get outlineBlack => BoxDecoration();
 
@@ -177,6 +201,9 @@ class BorderRadiusStyle {
       );
 
   // Rounded borders
+  static BorderRadius get roundedBorder10 => BorderRadius.circular(
+        10.h,
+      );
   static BorderRadius get roundedBorder15 => BorderRadius.circular(
         15.h,
       );

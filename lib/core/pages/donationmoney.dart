@@ -6,7 +6,6 @@ import 'package:NourishBite/core/app_export.dart';
 // import 'package:NourishBite/widgets/app_bar/custom_app_bar.dart';
 import 'package:NourishBite/widgets/custom_elevated_button.dart';
 import 'package:NourishBite/widgets/custom_text_form_field.dart';
-import 'package:NourishBite/widgets/select_group_card.dart';
 
 class DontationMoneyScreen extends StatefulWidget {
   const DontationMoneyScreen({Key? key})
@@ -22,12 +21,6 @@ class Donatemoney extends State<DontationMoneyScreen> {
     '5',
     '10',
     '50',
-  ];
-  final List<String> ids = <String>[
-    'id-123',
-    'id-134',
-    'id-145',
-    'id-156',
   ];
   @override
   Widget build(BuildContext context) {
@@ -109,17 +102,6 @@ class Donatemoney extends State<DontationMoneyScreen> {
       ),
     );
   }
-
-  /// Section Widget
-  // PreferredSizeWidget _buildAppBar(BuildContext context) {
-  //   return CustomAppBar(
-  //     height: 64.v,
-  //     title: AppbarTitle(
-  //       text: "X",
-  //       margin: EdgeInsets.only(left: 8.h),
-  //     ),
-  //   );
-  // }
 
   /// Section Widget
   Widget _buildOne(BuildContext context) {
