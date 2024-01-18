@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:NourishBite/core/app_export.dart';
 
-// ignore_for_file: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({Key? key})
       : super(
