@@ -123,14 +123,14 @@ class LoginScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15.h),
       child: CustomTextFormField(
         controller: userNameController,
-        hintText: "Username",
+        hintText: "Email",
         hintStyle: TextStyle(color: Colors.white),
         textStyle: TextStyle(color: Colors.white),
         textInputType: TextInputType.emailAddress,
         prefix: Container(
           margin: EdgeInsets.fromLTRB(11.h, 10.v, 8.h, 10.v),
           child: CustomImageView(
-            imagePath: ImageConstant.imgLock,
+            imagePath: ImageConstant.imgemail,
             height: 20.adaptSize,
             width: 20.adaptSize,
             color: Colors.white,
