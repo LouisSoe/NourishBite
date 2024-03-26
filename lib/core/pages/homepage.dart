@@ -104,11 +104,15 @@ class HomePage extends StatelessWidget {
                           fontSize: 15.fSize,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
+
+
+                          
                         ),
                       ),
                     ),
                     SizedBox(height: 12.v),
                     _buildNinetySixStack(context),
+                    
                     SizedBox(height: 20.v),
                     _buildFeaturedGoalsRow(context),
                     SizedBox(height: 1.v),
